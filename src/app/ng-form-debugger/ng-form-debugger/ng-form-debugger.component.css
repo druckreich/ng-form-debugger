@@ -1,0 +1,11 @@
+#inspect-modal {
+  font-size: 0.75em;
+}
+
+#open-inspect-modal-btn {
+  position: absolute;
+  top: 0px;
+  right: 15px;
+  border-radius: 0px;
+}
+

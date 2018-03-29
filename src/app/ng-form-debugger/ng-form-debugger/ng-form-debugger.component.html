@@ -1,3 +1,37 @@
-<p>
-  ng-form-debugger works!
-</p>
+<div class="border border-success">
+
+  <button id="open-inspect-modal-btn" class="btn btn-sm btn-success" (click)="inspectModal.show()">
+    <small>Inspect</small>
+  </button>
+
+  <!-- contains the form -->
+  <ng-content></ng-content>
+</div>
+
+<ng-modal id="inspect-modal" #inspectModal [modalTitle]="'Inspect'" [width]="500" [zIndex]="1100">
+  <ng-container class="ng-modal-body">
+    <table class="table table-sm table-bordered">
+      <tr>
+        <th>element</th>
+        <th>value</th>
+        <th>valid</th>
+        <th>touched</th>
+      </tr>
+      <tr [ngClass]="{'table-success': form.valid, 'table-danger': !form.valid}">
+        <td>form</td>
+        <td></td>
+        <td>{{form.valid}}</td>
+        <td>{{form.touched}}</td>
+      <tr>
+      <tr *ngFor="let key of controlKeys">
+        <td>{{key}}</td>
+        <td>{{form.controls[key].value}}</td>
+        <td>{{form.controls[key].valid}}</td>
+        <td>{{form.controls[key].touched}}</td>
+      </tr>
+    </table>
+  </ng-container>
+  <ng-container class="ng-modal-footer">
+    <button type="button" class="btn btn-sm btn-primary" (click)="logForm()">Log</button>
+  </ng-container>
+</ng-modal>

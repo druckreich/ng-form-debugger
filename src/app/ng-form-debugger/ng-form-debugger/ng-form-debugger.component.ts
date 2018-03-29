@@ -1,20 +1,36 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, AfterContentChecked} from '@angular/core';
+import {AbstractControl} from '@angular/forms';
 
 @Component({
   selector: 'form[ngFormDebugger]',
   templateUrl: './ng-form-debugger.component.html',
   styleUrls: ['./ng-form-debugger.component.css']
 })
-export class NgFormDebuggerComponent implements OnInit {
+export class NgFormDebuggerComponent implements OnInit, AfterContentChecked {
 
-  @Input()
+  @Input('ngFormDebugger')
   form: any;
+
+  controlKeys: string[];
+  controls: AbstractControl[];
 
   constructor() {
   }
 
   ngOnInit() {
-    console.log('ngOnInit', this.form);
+
+  }
+
+  ngAfterContentChecked() {
+    let keys: string[] = [];
+    for (let key in this.form.controls) {
+      keys.push(key);
+    }
+    this.controlKeys = keys;
+  }
+
+  logForm() {
+    console.log(this.form);
   }
 
 }

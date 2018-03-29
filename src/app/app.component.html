@@ -1,3 +1,17 @@
-<form #form="ngForm" ngFormDebugger [form]="form">
-
-</form>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <form #form="ngForm" [ngFormDebugger]="form">
+        <div class="form-control">
+          <input name="firstname" class="form-control" [ngModel]="user.firstname">
+        </div>
+        <div class="form-control">
+          <input name="lastname" class="form-control" [ngModel]="user.lastname">
+        </div>
+        <div class="form-control">
+          <input name="email" class="form-control" [ngModel]="user.email">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
